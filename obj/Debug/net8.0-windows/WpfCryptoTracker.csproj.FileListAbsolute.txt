@@ -1,0 +1,4 @@
+C:\Users\master-Sigvard\Desktop\projects\NET\WpfCryptoTracker\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
+C:\Users\master-Sigvard\Desktop\projects\NET\WpfCryptoTracker\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\master-Sigvard\Desktop\projects\NET\WpfCryptoTracker\obj\Debug\net8.0-windows\WpfCryptoTracker_MarkupCompile.cache
+C:\Users\master-Sigvard\Desktop\projects\NET\WpfCryptoTracker\obj\Debug\net8.0-windows\WpfCryptoTracker_MarkupCompile.lref
