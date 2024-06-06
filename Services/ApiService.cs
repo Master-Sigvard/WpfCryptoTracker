@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using WpfCryptoTracker.Models;
 
@@ -27,29 +27,16 @@ namespace WpfCryptoTracker.Services
         public async Task<List<CryptoCurrency>> GetTopCryptoCurrencies()
         {
             var response = await _httpClient.GetStringAsync("assets?limit=10");
-            var jsonDocument = JsonDocument.Parse(response);
-            var root = jsonDocument.RootElement;
-            var data = root.GetProperty("data");
+            Console.WriteLine("API Response: " + response);
 
-            var cryptoCurrencies = new List<CryptoCurrency>();
-
-            foreach (var element in data.EnumerateArray())
-            {
-                var cryptoCurrency = new CryptoCurrency
-                {
-                    Id = element.GetProperty("id").GetString(),
-                    Symbol = element.GetProperty("symbol").GetString(),
-                    Name = element.GetProperty("name").GetString(),
-                    CurrentPrice = element.GetProperty("priceUsd").GetDouble(),
-                    MarketCap = element.GetProperty("marketCapUsd").GetDouble(),
-                    TotalVolume = element.GetProperty("volumeUsd24Hr").GetDouble(),
-                    PriceChangePercentage24h = element.GetProperty("changePercent24Hr").GetDouble()
-                };
-
-                cryptoCurrencies.Add(cryptoCurrency);
-            }
+            var cryptoCurrencies = JsonConvert.DeserializeObject<ApiResponse>(response)?.Data;
 
             return cryptoCurrencies;
         }
+    }
+
+    public class ApiResponse
+    {
+        public List<CryptoCurrency> Data { get; set; }
     }
 }

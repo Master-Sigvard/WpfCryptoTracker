@@ -3,10 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WpfCryptoTracker.ViewModels"
         xmlns:local="clr-namespace:WpfCryptoTracker.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
     <Grid>
-        <Button Command="{Binding LoadDataCommand}" Content="Load Data" Margin="101,50,593,356" />
+        <ListBox ItemsSource="{Binding CryptoCurrencies}" SelectedItem="{Binding SelectedCurrency}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" Margin="5"/>
+                        <TextBlock Text="{Binding Symbol}" Margin="5"/>
+                        <TextBlock Text="{Binding PriceUsd, StringFormat={}{0:C}}" Margin="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

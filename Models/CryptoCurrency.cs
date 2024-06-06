@@ -9,11 +9,15 @@ namespace WpfCryptoTracker.Models
     public class CryptoCurrency
     {
         public string Id { get; set; }
+        public int Rank { get; set; }
         public string Symbol { get; set; }
         public string Name { get; set; }
-        public double CurrentPrice { get; set; }
-        public double MarketCap { get; set; }
-        public double TotalVolume { get; set; }
-        public double PriceChangePercentage24h { get; set; }
+        public double? Supply { get; set; }
+        public double? MaxSupply { get; set; }
+        public double? MarketCapUsd { get; set; }
+        public double? VolumeUsd24Hr { get; set; }
+        public double? PriceUsd { get; set; }
+        public double? ChangePercent24Hr { get; set; }
+        public double? Vwap24hr { get; set; }
     }
 }

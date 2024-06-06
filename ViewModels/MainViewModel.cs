@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,8 +48,17 @@ namespace WpfCryptoTracker.ViewModels
 
         private async Task LoadData()
         {
-            var data = await _apiService.GetTopCryptoCurrencies();
-            CryptoCurrencies = new ObservableCollection<CryptoCurrency>(data);
+            try
+            {
+                var data = await _apiService.GetTopCryptoCurrencies();
+                CryptoCurrencies = new ObservableCollection<CryptoCurrency>(data);
+                Debug.WriteLine("Data loaded successfully.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading data: {ex.Message}");
+            }
         }
+
     }
 }
